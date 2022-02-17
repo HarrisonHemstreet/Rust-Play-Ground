@@ -8,7 +8,7 @@ fn main() {
     let _new_vec = vec![1, 1, -1, 10, -10, 1];
     // println!("wowza {:?}", adjacent_elements_product(new_vec));
 
-    let this_vec = vec![1, 2, 4, 0, 1];
+    let this_vec = vec![40, 50, 60, 10, 20, 30];
     // println!("check this ish {:?}", sort_statues(this_vec));
     
     //almost_increasing_sequence(this_vec);
@@ -156,30 +156,85 @@ fn find_dups(mut sequence: Vec<i32>) -> Vec<i32> {
     }
     return result;
 }
-*/
 
-fn find_dups(mut sequence: Vec<i32>) -> bool {
-    let mut sequence_len: i32 = sequence.len() as i32;
+fn find_dups(sequence: Vec<i32>) -> bool {
+    let sequence_len: i32 = sequence.len() as i32;
     let mut _second_to_last: i32 = sequence[sequence.len() - 2];
     let mut counter: i32 = 0;
+    let mut stored_vals: Vec<i32> = Vec::new();
 
     let mut i: i32 = 0;
-    while i < sequence_len {
+    while i <= (sequence_len - 2) {
+        if stored_vals.contains(&sequence[i as usize]) {
+            counter+=1;
+            if counter > 1 { return false }
+        }
+        stored_vals.push(sequence[i as usize]);
         let mut _second_to_last: i32 = sequence[sequence.len() - 2];
         if (i + 2) < sequence_len {
             if sequence[i as usize] > sequence[i as usize + 1] { counter+=1 }
             if counter > 1 { return false }
         }
+        i+=1;
+    }
+
+    if stored_vals.contains(&sequence[i as usize]) {
+        counter+=1;
+        if counter > 1 { return false }
+    }
+
+    if (sequence_len - 4) > 0 {
+        if sequence[sequence_len as usize - 4] > sequence[sequence_len as usize - 3] {
+            counter+=1;
+            if counter > 1 { return false; }
+        }
+    }
+
+    if sequence[sequence_len as usize - 3] > sequence[sequence_len as usize - 2] {
+        counter+=1;
+        if counter > 1 { return false; }
+    }
+    if sequence[sequence_len as usize - 2] > sequence[sequence_len as usize - 1] {
+        counter+=1;
+        if counter > 1 { return false; }
+        }
+
+    return counter <= 1;
+}
+*/
+
+fn find_dups(mut sequence: Vec<i32>) -> bool {
+    let sequence_len: i32 = sequence.len() as i32;
+    let mut counter: i32 = 0;
+    let mut stored_vals: Vec<i32> = Vec::new();
+    let mut prev_num: i32 = 0;
+
+    let mut i: i32 = 0;
+    while i <= (sequence_len - 1) {
+        // check for dups
+        if stored_vals.contains(&sequence[i as usize]) {
+            counter+=1;
+            if counter > 1 { return false }
+        }
+        stored_vals.push(sequence[i as usize]);
+
+        // check to see if the current number (i) is less than the last number
+        // or a value less than the first value in the vector
+        if i > 0 {
+            prev_num = sequence[i as usize - 1];
+        }
         else {
-            if sequence[i as usize - 1] > sequence[i as usize] {
-                counter+=1;
-                if counter > 1 { return false; }
-                break;
+            prev_num = sequence[i as usize] - 1;
+        }
+
+        if prev_num > sequence[i as usize] {
+            counter+=1;
+            if counter > 1 {
+                return false
             }
-            if sequence[i as usize] > sequence[i as usize + 1] {
-                counter+=1;
-                if counter > 1 { return false; }
-                break;
+            else {
+                sequence.remove((sequence[i as usize] as i32).try_into().unwrap());
+                find_dups(sequence);
             }
         }
 

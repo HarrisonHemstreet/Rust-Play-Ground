@@ -1,1 +1,1 @@
-/home/harry/rust-stuff/play-ground/practice/target/debug/practice: /home/harry/rust-stuff/play-ground/practice/src/main.rs
+/home/harry/rust-stuff/play-ground/target/debug/practice: /home/harry/rust-stuff/play-ground/src/main.rs
