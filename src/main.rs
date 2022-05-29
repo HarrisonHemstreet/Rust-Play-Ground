@@ -1,3 +1,23 @@
+fn main() {
+    roman_to_int(String::from("abcd"));
+}
+
+fn roman_to_int(s: String) {
+    let roman_vec: Vec<&str> = s.split("").collect();
+    println!("romanVec: {:?}", roman_vec);
+    for roman_char in s.split("").collect() {
+
+    }
+    /*
+     * 1. we need to look at each character indvidually
+     * 2. we need to look not only at the current one, but also check to see if
+     *    the next character is larger or smaller
+     * 3. if the next char is larger, then we add the next one
+     * 4. if the next char is smaller, then we need to subtract the current number
+     * from the next
+    */
+}
+
 /*
 fn main() {
     /*
