@@ -1,22 +1,124 @@
 fn main() {
-    roman_to_int(String::from("abcd"));
 }
 
-fn roman_to_int(s: String) {
-    let roman_vec: Vec<&str> = s.split("").collect();
-    println!("romanVec: {:?}", roman_vec);
-    for roman_char in s.split("").collect() {
-
+struct Solution {}
+impl Solution {
+    fn contains_duplicate(nums: Vec<i32>) -> bool {
+        let mut i: i32 = 0;
+        while i < nums.len {
+            if nums[i]
+            i+=1;
+        }
     }
-    /*
-     * 1. we need to look at each character indvidually
-     * 2. we need to look not only at the current one, but also check to see if
-     *    the next character is larger or smaller
-     * 3. if the next char is larger, then we add the next one
-     * 4. if the next char is smaller, then we need to subtract the current number
-     * from the next
-    */
 }
+// Notes:
+/*
+ * 1. 
+*/
+
+/*
+    fn plus_one(n: i32) -> i32 {
+        n + 1
+    }
+
+    fn plus_one_again(n: i32) -> i32 {
+        n + Solution::plus_one(5)
+    }
+enum RomanNumeral {
+    I(String),
+    V(String),
+    X(String),
+    L(String),
+    C(String),
+    D(String),
+    M(String)
+}
+
+fn roman_to_int(s: String) -> i32 {
+    let roman_vec: Vec<&str> = s.split("").collect();
+    let mut i: usize = 0;
+    let mut total: i32 = 0;
+    let mut _last_val: i32 = 0;
+    while i < roman_vec.len() {
+        match roman_vec[i] {
+            "I" => {
+                total+=1;
+                _last_val = 1;
+            },
+            "V" => {
+                if _last_val == 1 {
+                    total += 3;
+                }
+                else {
+                    total+=5;
+                }
+                _last_val = 5;
+            },
+            "X" => {
+                if _last_val == 1 {
+                    total += 8;
+                }
+                else {
+                    total += 10;
+                }
+                _last_val = 10;
+            },
+            "L" => {
+                if _last_val == 10 {
+                    total += 30;
+                }
+                else {
+                    total += 50;
+                }
+                _last_val = 50;
+            },
+            "C" => {
+                if _last_val == 10 {
+                    total += 80;
+                }
+                else {
+                    total += 100;
+                }
+                _last_val = 100;
+            },
+            "D" => {
+                if _last_val == 100 {
+                    total += 300;
+                }
+                else {
+                    total += 500;
+                }
+                _last_val = 500;
+            },
+            "M" => {
+                if _last_val == 100 {
+                    total += 800;
+                }
+                else {
+                    total += 1000;
+                }
+                _last_val = 1000;
+            },
+            _ => println!("Input does not match any values")
+        }
+        i+=1;
+    }
+    println!("final total: {}", total);
+    total
+}
+*/
+// println!("romanVec: {:?}", roman_vec);
+//for roman_char in s.split("").collect() {
+//}
+
+/*
+* 1. we need to look at each character indvidually
+* 2. we need to look not only at the current one, but also check to see if
+*    the next character is larger or smaller
+* 3. if the next char is larger, then we add the next one
+* 4. if the next char is smaller, then we need to subtract the current number
+* from the next
+*/
 
 /*
 fn main() {
