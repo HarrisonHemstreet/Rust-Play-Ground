@@ -1,19 +1,35 @@
 fn main() {
+    Solution::contains_duplicate(vec![1, 2, 3, 4, 4]);
 }
 
 struct Solution {}
 impl Solution {
     fn contains_duplicate(nums: Vec<i32>) -> bool {
-        let mut i: i32 = 0;
-        while i < nums.len {
-            if nums[i]
-            i+=1;
+        let mut _curr_num: i32 = 0;
+        let nums_iter = nums.iter();
+        for x in nums_iter.clone() {
+            let mut rep_count: i32 = 0;
+            _curr_num = *x;
+            for y in nums_iter.clone() {
+                if _curr_num == *y {
+                    rep_count+=1;
+                }
+                if rep_count > 1 {
+                    println!("truuuuuuuueeeeeee, rep_count = {}", rep_count);
+                    return true;
+                }
+            }
         }
+        println!("falllllllllllllseeeeee");
+        false
     }
 }
 // Notes:
 /*
- * 1. 
+ * 1. have two loops, that way we can go through each number and check against
+ * all the other ones.
+ * 2. set a variable that will capture dupes
+ * 3. if there is a duplicate found, then just stop and return true
 */
 
 /*
